@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Compose email — MailFlow{% endblock %}
+{% block content %}
+<div class="page-title"><div class="eyebrow">CREATE A MESSAGE</div><h1>Compose an email</h1><p>Write once, then send a separate personalized message to each recipient.</p></div>
+<div class="compose-layout"><section class="panel compose-panel"><form method="post" id="compose-form">{% csrf_token %}
+<div class="section-label"><span>01</span> MESSAGE DETAILS</div>
+<div class="form-group"><label for="{{ form.tone.id_for_label }}">Email tone</label>{{ form.tone }}{% for error in form.tone.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+<div class="form-group"><label for="{{ form.subject.id_for_label }}">Subject line</label>{{ form.subject }}{% for error in form.subject.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+<div class="form-group"><label for="{{ form.message.id_for_label }}">Message</label>{{ form.message }}<small>Recipient names are added automatically to the greeting.</small>{% for error in form.message.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+<div class="section-label section-label-spaced"><span>02</span> RECIPIENTS <span class="limit-badge">MAX 10</span></div>
+<div class="form-group"><label for="{{ form.recipients.id_for_label }}">Recipient list</label>{{ form.recipients }}<small>{{ form.recipients.help_text }}</small>{% for error in form.recipients.errors %}<small class="error">{{ error }}</small>{% endfor %}</div>
+<div class="compose-actions"><a href="{% url 'dashboard' %}" class="btn btn-light">Cancel</a><button type="submit" class="btn btn-primary">Send emails <span>→</span></button></div>
+</form></section>
+<aside class="compose-side"><div class="side-card"><div class="side-card-icon">✦</div><h3>Before you send</h3><ul><li>Check every recipient address.</li><li>Keep your subject clear and useful.</li><li>Only contact people you’re authorized to email.</li><li>Test locally before configuring SMTP.</li></ul></div><div class="side-card soft-card"><h3>Recipient format</h3><code>Ravi, ravi@example.com<br>Priya, priya@example.com</code><p>One person per line. The same message is sent separately to each recipient.</p></div></aside></div>
+{% endblock %}

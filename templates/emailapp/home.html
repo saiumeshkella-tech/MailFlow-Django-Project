@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}MailFlow — Email, made simple{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PERSONAL EMAIL WORKSPACE</div>
+    <h1>Thoughtful emails.<br><span>Sent simply.</span></h1>
+    <p class="hero-text">Prepare clear, personalized emails and send them one by one from one calm, organized workspace.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="{% url 'signup' %}">Get started <span>→</span></a><a class="btn btn-light" href="{% url 'login' %}">I already have an account</a></div>
+    <div class="hero-note"><span class="check-mark">✓</span> Up to 10 recipients per batch &nbsp;·&nbsp; Individual email records</div>
+  </div>
+  <div class="preview-card">
+    <div class="preview-top"><div class="window-dots"><i></i><i></i><i></i></div><span>NEW MESSAGE</span><span class="preview-badge">Draft</span></div>
+    <div class="preview-field"><label>TO</label><div class="recipient-chip">Ravi <span>ravi@example.com</span></div></div>
+    <div class="preview-field"><label>SUBJECT</label><strong>A quick follow-up</strong></div>
+    <div class="preview-message"><div class="mini-avatar">R</div><div><strong>Hi Ravi,</strong><p>Thank you for your time. I wanted to follow up and share the next steps...</p><span class="preview-signature">Regards, Your Name</span></div></div>
+    <div class="preview-bottom"><span>✦ Personalized for each recipient</span><span class="send-pill">Ready to send</span></div>
+  </div>
+</section>
+<section class="feature-row">
+  <div class="feature"><div class="feature-icon lavender">✎</div><h3>Write with purpose</h3><p>Choose a tone and write a clear message.</p></div>
+  <div class="feature"><div class="feature-icon mint">◎</div><h3>Personal by default</h3><p>Each recipient gets their own email.</p></div>
+  <div class="feature"><div class="feature-icon peach">↗</div><h3>Stay organized</h3><p>Review send results in your history.</p></div>
+</section>
+{% endblock %}

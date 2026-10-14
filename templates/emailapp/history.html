@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Email history — MailFlow{% endblock %}
+{% block content %}
+<div class="dashboard-head"><div><div class="eyebrow">YOUR ACTIVITY</div><h1>Email history</h1><p>Review your recent email attempts and their status.</p></div><a href="{% url 'compose' %}" class="btn btn-primary">＋ Compose email</a></div>
+{% if results %}<div class="result-banner"><strong>Latest batch results</strong>{% for email, status in results %}<div class="result-row"><span>{{ email }}</span><span class="status {% if status == 'Sent' %}status-sent{% else %}status-failed{% endif %}">{{ status }}</span></div>{% endfor %}<small>In local testing mode, “Sent” means Django printed the message to your terminal. It does not mean it reached a real inbox.</small></div>{% endif %}
+<section class="panel history-panel"><div class="panel-heading"><div><h2>All email records</h2><p>{{ records|length }} record(s) shown</p></div></div>
+{% if records %}<div class="table-wrap"><table><thead><tr><th>Recipient</th><th>Subject</th><th>Tone</th><th>Status</th><th>Date</th></tr></thead><tbody>{% for record in records %}<tr><td><strong>{{ record.recipient_name }}</strong><small>{{ record.recipient_email }}</small></td><td>{{ record.subject }}</td><td><span class="tone-tag">{{ record.tone|title }}</span></td><td><span class="status status-{{ record.status }}">{{ record.get_status_display }}</span></td><td>{{ record.created_at|date:"d M Y, H:i" }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><div class="empty-icon">↗</div><h3>No emails yet</h3><p>Your sent email attempts will be recorded here.</p><a class="text-link" href="{% url 'compose' %}">Compose your first email →</a></div>{% endif %}</section>
+{% endblock %}
